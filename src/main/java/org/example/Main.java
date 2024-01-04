@@ -11,18 +11,21 @@ import java.util.TreeMap;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.print("Hello and welcome!");
+
+        /*//creating connection
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.openweathermap.org/data/2.5/weather?lat=51.45&lon=18.05&units=metric&appid=ab9cb50752b81413a5339c0b719d3b03")).build();
         String curWeather = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 //.thenAccept(System.out::println)
-                .join();
-
+                .join();//api response to string
+        //trimming'n'cleaning the string
         String[] weatherArray = curWeather.replace(':',' ').split(",");
         int i=0;
         for(String element :weatherArray){
@@ -56,6 +59,6 @@ public class Main {
         Set<String> keySet = weatherMap.keySet();
         System.out.println("Klucze:\n" + keySet);
         Collection<String> values = weatherMap.values();
-        System.out.println("Wartości:\n" + values);
+        System.out.println("Wartości:\n" + values);*/
     }
 }
