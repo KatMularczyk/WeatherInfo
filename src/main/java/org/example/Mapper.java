@@ -20,7 +20,9 @@ private String curWeather, lat = "51.45", lon="18.05";
     public String getLon() {        return lon;    }
     public void setLon(String newLon) {        this.lon = newLon;   }
 
-private String getResponse(String lat, String lon){
+public String getResponse(Mapper coord /*String lat, String lon*/){
+        String lat = coord.getLat();
+        String lon = coord.getLon();
     String uri = String.join("",
             "https://api.openweathermap.org/data/2.5/weather?lat=",
             lat,
@@ -34,7 +36,7 @@ private String getResponse(String lat, String lon){
             .join();
 }
 
-private String[] punctRemover(String curW){
+public String[] punctRemover(String curW){
     String[] weatherArray = curW.replace(':',' ').split(",");
     int i=0;
     for(String element :weatherArray){
@@ -46,7 +48,7 @@ private String[] punctRemover(String curW){
     return weatherArray;
 }
 
-private Map extractor(String[] array){
+public Map extractor(String[] array){
     Map<String,String> weatherMap = new TreeMap<>();
     for(String element :array) {
         String[] pair = new String[2];// arrays of diff weather info
