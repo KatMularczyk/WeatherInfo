@@ -1,37 +1,34 @@
-[
-  {
-    "city": "Kalisz",
-    "coordinates": {
+
+  [
+    {
+      "city": "Kalisz",
       "latitude": 51.45,
       "longitude": 18.05
-    }
-  },
-  {
-    "city": "Poznan",
-    "coordinates": {
+
+    },
+    {
+      "city": "Poznan",
       "latitude": 52.40,
-     "longitude": 16.91
-   }
-  },
-  {
-    "city": "Warsaw",
-    "coordinates": {
+      "longitude": 16.91
+
+    },
+    {
+      "city": "Warsaw",
+
       "latitude": 52.21,
       "longitude": 20.99
-    }
-  },
-  {
-    "city": "Paris",
-    "coordinates": {
+
+    },
+    {
+      "city": "Paris",
       "latitude": 48.87,
       "longitude": 2.34
-    }
-  },
-  {
-    "city": "Madrid",
-    "coordinates": {
+
+    },
+    {
+      "city": "Madrid",
       "latitude": 40.44,
       "longitude": -3.70
+
     }
-  }
-]
+  ]

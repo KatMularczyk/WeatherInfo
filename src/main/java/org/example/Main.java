@@ -1,9 +1,5 @@
 package org.example;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +13,18 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.print("Hello and welcome!");
+
+        Reader reader = new Reader("C:\\Users\\lenovo\\IdeaProjects\\Weather_forecast\\src\\main\\resources\\cities.json");
+        reader.listCreator();
+        Double[] y = reader.searcher("Kalisz");
+
+        String la = y[0].toString();
+        String lo = y[1].toString();
+        System.out.print(la);
+        System.out.print(lo);
+
         Map x = new TreeMap();
-        Mapper city = new Mapper("51.45", "18.05");
+        Mapper city = new Mapper(la, lo);
         x = city.
                 extractor(
                 city.punctRemover(

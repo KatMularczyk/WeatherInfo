@@ -16,7 +16,16 @@
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jramoyo</groupId>
+            <artifactId>indexed-file-reader</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
     <build>
