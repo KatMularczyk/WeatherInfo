@@ -21,29 +21,34 @@ public class Reader {
 
     public void listCreator()
     {
-        File input = new File(path);
+        File input = new File(path); //forward the file to parse
 
         JsonElement fileElement;
 
+
+
         {
             try {
+                //parsing into an array of elements - cities
                 fileElement = JsonParser.parseReader(new FileReader(input));
                 JsonArray jsonArrayOfCities = fileElement.getAsJsonArray();
 
                 /*List<City> cities = new ArrayList<>();*/
 
                 for (JsonElement city : jsonArrayOfCities) {
+                    //get each city as an object
                     JsonObject cityElement = city.getAsJsonObject();
                     String name = cityElement.get("city").getAsString();
-
+                    //get its coord into an array
                     Double la = cityElement.get("latitude").getAsDouble();
                     Double lo = cityElement.get("longitude").getAsDouble();
                     Double[] coordinates = {la, lo};
-
+                    //create new object ans adds it to a list of objects
                     City c = new City(name, coordinates);
                     cities.add(c);
-                }
 
+                }
+                System.out.print("Enter the city");
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

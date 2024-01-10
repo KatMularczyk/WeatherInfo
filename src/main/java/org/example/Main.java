@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -16,7 +13,11 @@ public class Main {
 
         Reader reader = new Reader("C:\\Users\\lenovo\\IdeaProjects\\Weather_forecast\\src\\main\\resources\\cities.json");
         reader.listCreator();
-        Double[] y = reader.searcher("Kalisz");
+        Scanner in = new Scanner(System.in);
+
+        String s = in.nextLine();
+        System.out.println("You entered string " + s);
+        Double[] y = reader.searcher(s);
 
         String la = y[0].toString();
         String lo = y[1].toString();
