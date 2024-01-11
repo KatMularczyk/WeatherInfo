@@ -24,9 +24,6 @@ public class Reader {
         File input = new File(path); //forward the file to parse
 
         JsonElement fileElement;
-
-
-
         {
             try {
                 //parsing into an array of elements - cities

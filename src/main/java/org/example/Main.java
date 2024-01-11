@@ -10,35 +10,25 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.print("Hello and welcome!");
-
+        //make a list o cities with coords
         Reader reader = new Reader("C:\\Users\\lenovo\\IdeaProjects\\Weather_forecast\\src\\main\\resources\\cities.json");
         reader.listCreator();
+
+        //get the input - city name
         Scanner in = new Scanner(System.in);
+        String input = in.nextLine();
 
-        String s = in.nextLine();
-        System.out.println("You entered string " + s);
-        Double[] y = reader.searcher(s);
+        //check the coordinates of given city and put them into an array
+        Double[] coordArray = reader.searcher(input);
+        Double la = coordArray[0];
+        Double lo = coordArray[1];
+        //forwards the coords to Lister to get the weather from API
+        Lister city = new Lister(la, lo);
+        List<Double> weatherList = new ArrayList<>();
+        weatherList = city.
+                jsonToList(city.
+                        getResponse(city));
 
-        String la = y[0].toString();
-        String lo = y[1].toString();
-        System.out.print(la);
-        System.out.print(lo);
-
-        /*Map x = new TreeMap();*/
-        Mapper city = new Mapper(la, lo);
-        List<Double> x = new ArrayList<>();
-
-        x = city.jsonToList(city.getResponse(city));
-
-       /* x = city.
-                extractor(
-                city.punctRemover(
-                city.getResponse(city)));
-
-        Set keySet = x.keySet();
-        System.out.println("Klucze:\n" + keySet);
-        Collection values = x.values();
-        System.out.println("Wartości:\n" + values);*/
 
     }
 }
