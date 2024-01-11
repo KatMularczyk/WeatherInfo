@@ -24,9 +24,13 @@ public class Main {
         System.out.print(la);
         System.out.print(lo);
 
-        Map x = new TreeMap();
+        /*Map x = new TreeMap();*/
         Mapper city = new Mapper(la, lo);
-        x = city.
+        List<Double> x = new ArrayList<>();
+
+        x = city.jsonToList(city.getResponse(city));
+
+       /* x = city.
                 extractor(
                 city.punctRemover(
                 city.getResponse(city)));
@@ -34,7 +38,7 @@ public class Main {
         Set keySet = x.keySet();
         System.out.println("Klucze:\n" + keySet);
         Collection values = x.values();
-        System.out.println("Wartości:\n" + values);
+        System.out.println("Wartości:\n" + values);*/
 
     }
 }
