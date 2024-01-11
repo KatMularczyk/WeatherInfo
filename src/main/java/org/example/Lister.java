@@ -9,6 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Lister {
 
@@ -24,7 +25,7 @@ private Double lat, lon;
     public Double getLon() {        return lon;    }
     public void setLon(Double newLon) {        this.lon = newLon;   }
 
-public String getResponse(Lister coord){
+public String getResponse(Lister coord){//gets API response
     Double lat = coord.getLat();
     Double lon = coord.getLon();
     String uri = String.join("",
@@ -39,7 +40,7 @@ public String getResponse(Lister coord){
             .thenApply(HttpResponse::body)
             .join();
 }
-public List<Double> jsonToList(String curW){
+public List<Double> jsonToList(String curW){// makes a list of single response
 
     JsonElement element;
     element = JsonParser.parseString(curW);
@@ -49,9 +50,9 @@ public List<Double> jsonToList(String curW){
     neededDataList.add(mainData.get("temp").getAsDouble());
     neededDataList.add(mainData.get("pressure").getAsDouble());
     neededDataList.add(mainData.get("humidity").getAsDouble());
-    System.out.println(Arrays.toString(neededDataList.toArray()));
+
+    neededDataList.stream().forEach(System.out::println);
     return neededDataList;
     }
-
 
 }

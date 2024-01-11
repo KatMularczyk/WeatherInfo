@@ -9,26 +9,42 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
+        Decision decision = new Decision();
         System.out.print("Hello and welcome!");
+        List<Weather> listOfResponses = new ArrayList<>();
         //make a list o cities with coords
         Reader reader = new Reader("C:\\Users\\lenovo\\IdeaProjects\\Weather_forecast\\src\\main\\resources\\cities.json");
         reader.listCreator();
 
-        //get the input - city name
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
+        while(decision.getI()==1) {
 
-        //check the coordinates of given city and put them into an array
-        Double[] coordArray = reader.searcher(input);
-        Double la = coordArray[0];
-        Double lo = coordArray[1];
-        //forwards the coords to Lister to get the weather from API
-        Lister city = new Lister(la, lo);
-        List<Double> weatherList = new ArrayList<>();
-        weatherList = city.
-                jsonToList(city.
-                        getResponse(city));
+            String input = decision.start();
+            System.out.println("Works");
+            //check the coordinates of given city and put them into an array
+            Double[] coordArray = reader.searcher(input);
+            //forwards the coords to Lister to get the weather from API
+            Lister cityWeather = new Lister(coordArray[0], coordArray[1]);
+            List<Double> weatherList = new ArrayList<>();
+            weatherList = cityWeather.
+                    jsonToList(cityWeather.
+                            getResponse(cityWeather));
+            //creating a weather object to put it on the list
+            Weather weather = new Weather(weatherList, input);
+            listOfResponses.add(weather);
+            decision.question();
+            /*System.out.println("Do you want to continue? y/n");
+            Scanner in = new Scanner(System.in);
+            String userDecision = in.nextLine();
+            if(!(userDecision.equalsIgnoreCase("n")|userDecision.equalsIgnoreCase("y"))){
+                System.out.println("Do you want to continue? y/n");
+                userDecision = in.nextLine();
+            }
+            if(userDecision.equalsIgnoreCase("n")){
+                decision.setI(0);
+            }*/
 
+        }
+        listOfResponses.stream().forEach(e -> e.printWeather());
 
     }
 }

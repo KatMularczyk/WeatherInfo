@@ -45,7 +45,6 @@ public class Reader {
                     cities.add(c);
 
                 }
-                System.out.print("Enter the city");
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
