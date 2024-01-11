@@ -28,7 +28,7 @@ public class Decision {
     public void question(){
         System.out.println("Do you want to continue? y/n");
         String userDecision = in.nextLine();
-        if(!(userDecision.equalsIgnoreCase("n")|userDecision.equalsIgnoreCase("y"))){
+        while(!(userDecision.equalsIgnoreCase("n")|userDecision.equalsIgnoreCase("y"))){
             System.out.println("Do you want to continue? y/n");
             userDecision = in.nextLine();
         }

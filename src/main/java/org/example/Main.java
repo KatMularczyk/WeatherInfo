@@ -32,19 +32,9 @@ public class Main {
             Weather weather = new Weather(weatherList, input);
             listOfResponses.add(weather);
             decision.question();
-            /*System.out.println("Do you want to continue? y/n");
-            Scanner in = new Scanner(System.in);
-            String userDecision = in.nextLine();
-            if(!(userDecision.equalsIgnoreCase("n")|userDecision.equalsIgnoreCase("y"))){
-                System.out.println("Do you want to continue? y/n");
-                userDecision = in.nextLine();
-            }
-            if(userDecision.equalsIgnoreCase("n")){
-                decision.setI(0);
-            }*/
-
         }
         listOfResponses.stream().forEach(e -> e.printWeather());
-
+        Info info = new Info();
+        info.createJson(listOfResponses);
     }
 }
