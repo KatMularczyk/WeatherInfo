@@ -1,5 +1,7 @@
 package org.example;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,5 +51,7 @@ public class Weather {
         System.out.println(txt);
         return txt;
     }
+
+
 
 }

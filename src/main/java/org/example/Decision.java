@@ -1,5 +1,15 @@
 package org.example;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -35,7 +45,29 @@ public class Decision {
         if(userDecision.equalsIgnoreCase("n")){
             i=0;
         }
+
     }
+    public String createJson(List<Weather> list){
+
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        try {
+            FileWriter writer = new FileWriter("WeatherList.json");
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(json);
+        return json;
+    }
+
+    /*public void whenToXmlFile() {
+        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.writeValue(new File("simple_bean.xml"), new SimpleBean());
+        File file = new File("simple_bean.xml");
+
+    }*/
 
 
 
