@@ -1,8 +1,9 @@
 package org.example;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Decision {
     private int i=1;
@@ -47,7 +49,7 @@ public class Decision {
         }
 
     }
-    public String createJson(List<Weather> list){
+    public void createJson(List<Weather> list){
 
         Gson gson = new Gson();
         String json = gson.toJson(list);
@@ -58,16 +60,40 @@ public class Decision {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(json);
-        return json;
     }
 
-    /*public void whenToXmlFile() {
-        XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.writeValue(new File("simple_bean.xml"), new SimpleBean());
-        File file = new File("simple_bean.xml");
+    public void fileReturnQuestion(List<Weather> listToFile){
+        System.out.println("Do you want to receive file with weather list? Use P/X/J to get PDF/XML/JSON");
+        String fileDecision = in.nextLine();
+        if(fileDecision.equalsIgnoreCase("J")){
+            createJson(listToFile);
+        }
+        if(fileDecision.equalsIgnoreCase("X")){
+            createXml(listToFile);
+        }
+    }
 
-    }*/
+    public static String createXml(List<Weather> objectList) {
+
+        XmlMapper xmlMapper = new XmlMapper();
+
+        try {
+            String xml = xmlMapper.writeValueAsString(objectList);
+
+            // Print the generated XML string (optional)
+            System.out.println("Generated XML:\n" + xml);
+            FileWriter writer = new FileWriter("WeatherList.xml");
+            writer.write(xml);
+            writer.close();
+            return xml;
+        } catch (JsonProcessingException e) {
+           return null;
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 

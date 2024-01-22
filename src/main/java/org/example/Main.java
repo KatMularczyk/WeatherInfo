@@ -13,7 +13,7 @@ public class Main {
         System.out.print("Hello and welcome!");
         List<Weather> listOfResponses = new ArrayList<>();
         //make a list o cities with coords
-        Reader reader = new Reader("C:\\Users\\lenovo\\IdeaProjects\\Weather_forecast\\src\\main\\resources\\cities.json\\");
+        Reader reader = new Reader("src\\main\\resources\\cities.json\\");
         reader.listCreator();
 
         while(decision.getI()==1) {
@@ -34,7 +34,8 @@ public class Main {
             decision.question();
         }
         listOfResponses.stream().forEach(e -> e.printWeather());
+        decision.fileReturnQuestion(listOfResponses);
 
-        decision.createJson(listOfResponses);
+
     }
 }
