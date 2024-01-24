@@ -4,6 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +20,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+
+import java.io.IOException;
+
+import static org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName.HELVETICA_BOLD;
+import static org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName.TIMES_ROMAN;
 
 
 public class Decision {
@@ -71,9 +86,12 @@ public class Decision {
         if(fileDecision.equalsIgnoreCase("X")){
             createXml(listToFile);
         }
+        if(fileDecision.equalsIgnoreCase(("P"))){
+            createPdf(listToFile);
+        }
     }
 
-    public static String createXml(List<Weather> objectList) {
+    public static void createXml(List<Weather> objectList) {
 
         XmlMapper xmlMapper = new XmlMapper();
 
@@ -85,16 +103,47 @@ public class Decision {
             FileWriter writer = new FileWriter("WeatherList.xml");
             writer.write(xml);
             writer.close();
-            return xml;
+            //return xml;
         } catch (JsonProcessingException e) {
-           return null;
+           //return null;
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+public static void createPdf(List<Weather> toSerialize) {
+    try
+            (PDDocument document = new PDDocument()) {
+        PDPage page = new PDPage(PDRectangle.A4);
+        document.addPage(page);
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.setFont(new PDType1Font(HELVETICA_BOLD), 12);
+        contentStream.beginText();
+        contentStream.newLineAtOffset(50, 700);
+        for(Weather toWrite : toSerialize){
+           // contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+
+            contentStream.showText("City: " + toWrite.getCity());
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Temperature: " + toWrite.getTemp() + " °C");
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Humidity: " + toWrite.getHumidity() + "%");
+            contentStream.newLineAtOffset(0, -20);
+            contentStream.showText("Pressure: " + toWrite.getPressure() + "hPa");
+            contentStream.newLineAtOffset(0, -50);
+            //contentStream.endText();
+
+        }
+        contentStream.endText();
+        contentStream.close();
+        document.save("weather.pdf");
+        document.close();
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
 
 
+}
 
 }
