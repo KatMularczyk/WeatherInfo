@@ -11,6 +11,10 @@ public class City {
         this.name = name;
         this.coordinates = coordinates;
     }
+    public City (){
+        this.name = "";
+        this.coordinates = new Double[]{0.0, 0.0};
+    }
 
 
 

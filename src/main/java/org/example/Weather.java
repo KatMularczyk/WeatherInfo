@@ -47,7 +47,7 @@ public class Weather {
     }
 
     public String printWeather(){
-        String txt = String.format("W %s jest %.2f stopni, %2f press, %.2f humidity", city, temp, pressure, humidity);
+        String txt = String.format("%s - temperature: %.2f *C, pressure: %.2f hPA, humidity: %.2f", city, temp, pressure, humidity);
         System.out.println(txt);
         return txt;
     }

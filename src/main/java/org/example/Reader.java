@@ -18,8 +18,11 @@ public class Reader {
     public Reader(String path){
         this.path = path;
     }
+    public Reader(){
+        this.path= "X";
+    }
 
-    public void listCreator()
+    public List<City> listCreator()
     {
         File input = new File(path); //forward the file to parse
 
@@ -45,17 +48,17 @@ public class Reader {
                     cities.add(c);
 
                 }
-
+            return cities;
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-    public Double[] searcher(String cityName){
+    public Double[] searcher(String cityName, List<City> listOfCities){
         Double[] toReturn = new Double[2];
-        for(City city : cities){
-            if(city.getName().contains(cityName)){
+        for(City city : listOfCities){
+            if(city.getName().equalsIgnoreCase(cityName)){
                 toReturn = Arrays.copyOf(city.getCoordinates(),city.getCoordinates().length);
             }
         }
