@@ -32,10 +32,8 @@ public class ReaderTests {
             Double[]testArray = new Double[]{2.02,5.55};
             Double[]testArray2 = new Double[]{2.05,5.88};
             cities = asList(mockedCity, mockedCity2);
-            //when(mockedCity.getName()).thenReturn("A");
             doReturn("A").when(mockedCity).getName();
             when(mockedCity2.getName()).thenReturn("B");
-            //when(mockedCity.getCoordinates()).thenReturn(testArray);
             doReturn(testArray).when(mockedCity).getCoordinates();
             when(mockedCity2.getCoordinates()).thenReturn(testArray2);
             ;
@@ -48,11 +46,25 @@ public class ReaderTests {
             Double[]receivedArray = reader.searcher("A", cities);
             Assert.assertEquals(expectedArray,receivedArray);
         }
+
+    @Test
+        public void searcherTestTrue2(){
+            Double[]expectedArray = new Double[]{2.05,5.88};
+            Double[]receivedArray = reader.searcher("B", cities);
+            Assert.assertEquals(expectedArray,receivedArray);
+
+        }
         @Test
         public void searcherTestFalse(){
             Double[]expectedArray = new Double[]{2.02, 5.55};
             Assert.assertNotEquals(expectedArray,reader.searcher("B",cities));
         }
+
+    @Test
+    public void searcherTestFalse2(){
+        Double[]expectedArray = new Double[]{2.05,5.88};
+        Assert.assertNotEquals(expectedArray,reader.searcher("C",cities));
+    }
 
     }
 
